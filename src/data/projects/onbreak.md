@@ -10,4 +10,4 @@ image: "@assets/projects/onbreak/preview.webp"
 
 ## Links
 
-- [GitHub](https://github.com/Jaycedam/OnBreakServices)
+- [GitHub](https://github.com/jaycem-dev/OnBreakServices)

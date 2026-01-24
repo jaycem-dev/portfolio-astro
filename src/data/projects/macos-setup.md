@@ -31,13 +31,13 @@ git -v
 Start:
 
 ```sh
-git clone https://github.com/Jaycedam/mac-setup.git ~/Developer/mac-setup
+git clone https://github.com/jaycem-dev/mac-setup.git ~/Developer/mac-setup
 cd ~/Developer/mac-setup && sh main.sh
 ```
 
 ## Manual settings
 
-Some settings must be changed manually due to API limitation or lack of documentation. Check [this issue](https://github.com/Jaycedam/mac-setup/issues/13) for more details.
+Some settings must be changed manually due to API limitation or lack of documentation. Check [this issue](https://github.com/jaycem-dev/mac-setup/issues/13) for more details.
 
 ---
 
@@ -71,4 +71,4 @@ _If you install new Brew packages, just run **backup.sh** again to update the Br
 
 ## Links
 
-- [GitHub](https://github.com/Jaycedam/mac-setup)
+- [GitHub](https://github.com/jaycem-dev/mac-setup)

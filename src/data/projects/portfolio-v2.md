@@ -26,5 +26,5 @@ The Project details page, blog posts and admin forms all use [Intercepting Route
 
 ## Links
 
-- [GitHub](https://github.com/Jaycedam/portfolio-next)
+- [GitHub](https://github.com/jaycem-dev/portfolio-next)
 - [Live version](https://portfolio-next-jaycedams-projects.vercel.app)

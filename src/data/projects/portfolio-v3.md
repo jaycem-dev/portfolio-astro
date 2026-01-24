@@ -24,4 +24,4 @@ Since I only ship the necessary JS, the whole site is much faster than previous 
 
 ## Links
 
-- [GitHub](https://github.com/Jaycedam/portfolio-astro)
+- [GitHub](https://github.com/jaycem-dev/portfolio-astro)

@@ -34,7 +34,7 @@ El proyecto utiliza el patrón de Django MVT
 1. Clonar repositorio
 
 ```sh
-git clone https://github.com/Jaycedam/ferme-website.git
+git clone https://github.com/jaycem-dev/ferme-website.git
 cd ferme-website
 ```
 
@@ -124,4 +124,4 @@ python manage.py runserver
 
 ## Links
 
-- [GitHub](https://github.com/Jaycedam/ferme-website)
+- [GitHub](https://github.com/jaycem-dev/ferme-website)
