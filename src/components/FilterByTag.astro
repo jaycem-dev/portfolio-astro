@@ -27,7 +27,7 @@ if (collection === "projects") {
 <div class="flex items-center">
     <ul class="flex flex-wrap items-center gap-4 md:gap-2">
         <li>
-            <TagsIcon size={30} />
+            <TagsIcon width={30} height={30} />
         </li>
         <li>
             <Link
@@ -40,7 +40,7 @@ if (collection === "projects") {
                     collection === subpath && (
                         // If the current path match the name of the tag, then render the link bg
                         <div
-                            class="absolute inset-0 -z-10 rounded-3xl bg-primary"
+                            class="bg-primary absolute inset-0 -z-10 rounded-3xl"
                             transition:name="filter-btn"
                         />
                     )
@@ -60,7 +60,7 @@ if (collection === "projects") {
                         {tag.tag === subpath && (
                             // If the current path match the name of the tag, then render the link bg
                             <div
-                                class="absolute inset-0 -z-10 rounded-3xl bg-primary"
+                                class="bg-primary absolute inset-0 -z-10 rounded-3xl"
                                 transition:name="filter-btn"
                             />
                         )}

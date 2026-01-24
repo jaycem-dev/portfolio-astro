@@ -17,10 +17,7 @@ export default defineConfig({
         },
     },
     integrations: [sitemap()],
-    experimental: {
-        // https://docs.astro.build/en/reference/experimental-flags/svg/
-        svg: true,
-    },
+    experimental: {},
     vite: {
         plugins: [tailwindcss()],
     },
