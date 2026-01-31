@@ -1,5 +1,5 @@
 ---
-title: "MacOS Setup"
+title: "macOS Setup"
 category: "CLI"
 description: "Bash scripts to automate a fresh install of macOS"
 date: "2023-07"
@@ -37,7 +37,7 @@ cd ~/Developer/mac-setup && sh main.sh
 
 ## Manual settings
 
-Some settings must be changed manually due to API limitation or lack of documentation. Check [this issue](https://github.com/jaycem-dev/mac-setup/issues/13) for more details.
+Some settings must be changed manually due to API limitations or lack of documentation. Check [this issue](https://github.com/jaycem-dev/mac-setup/issues/13) for more details.
 
 ---
 
@@ -67,7 +67,7 @@ cd ~/Developer/mac-setup && sh backup.sh
 
 _If you install new Brew packages, just run **backup.sh** again to update the Brewfile._
 
-4. Make sure to change the USERNAME from the url in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
+4. Make sure to change the USERNAME from the URL in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
 
 ## Links
 
