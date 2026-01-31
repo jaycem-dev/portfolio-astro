@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-    site: "https://www.jordancortes.dev",
+    site: "https://www.jaycem.dev",
     adapter: vercel(),
     markdown: {
         shikiConfig: {
