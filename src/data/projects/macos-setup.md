@@ -10,65 +10,53 @@ image: "@assets/projects/macos-setup/preview.webp"
 
 ## Description
 
-Opinionated automation shell scripts to set up macOS.
+Automation scripts to set up macOS for software development, privacy and general use.
 
-- Installs [Homebrew](https://brew.sh).
-- Restores the current backup:
-    - Symlinks dotfiles from the repo to the home folder (.config/ and .zshrc).
-    - Installs packages listed in a [Brewfile](Brewfile) using [brew](https://brew.sh) and [mas](https://github.com/mas-cli/mas) (for App Store apps).
-- Changes some macOS default preferences; see the full list [here](modules/preferences.sh).
+## Features
 
-## Automated setup
+When running the main script, you can select between **automated setup** or **update backup**.
+Here's what each option does:
 
-**CAUTION**: This will overwrite your dotfiles. If you want to use this project with your own backup [read this first](#how-to-use).
+1. **Automated Setup**
 
-Check dependencies:
+    - Install [homebrew](https://brew.sh) and packages listed in [Brewfile](Brewfile).
+    - Symlink [dotfiles](dotfiles) to the home directory.
+    - Install [fish shell](https://fishshell.com) and use it as the default shell.
+    - Install [additional LSP servers](modules/lsp.sh) missing from brew packages using npm.
+    - Change [macOS defaults](modules/defaults.sh) for finder, dock, etc.
+    - Modify [persistent dock apps](modules/dock_apps.sh).
+    - [Misc macOS settings](modules/misc.sh) like touchid for sudo, etc.
+    - Set up [Kanata](https://github.com/jtroo/kanata) and Karabiner driver as launchd services for keyboard customization and layers.
+    - Set up DNS over HTTPS with blocking ads and trackers using [Mullvad dns](https://mullvad.net/en/help/dns-over-https-and-dns-over-tls).
+
+2. **Update Backup**
+    - Moves dotfiles (.config/ and .zshrc) to the project directory then creates symlinks back to $HOME.
+    - Updates Brewfile from brew packages installed.
+
+> [!CAUTION]
+> Choosing Automated Setup will overwrite your dotfiles. If you want to use this project with your own backup [read the wiki.](https://github.com/Jaycedam/mac-setup/wiki).
+
+Install dependencies:
 
 ```sh
-git -v
+xcode-select --install
 ```
 
 Start:
 
 ```sh
-git clone https://github.com/jaycem-dev/mac-setup.git ~/Developer/mac-setup
-cd ~/Developer/mac-setup && sh main.sh
+git clone https://github.com/jaycem-dev/mac-setup.git ~/dev/mac-setup
+bash ~/dev/mac-setup/main.sh
 ```
+
+Then select the option you want to run.
 
 ## Manual settings
 
-Some settings must be changed manually due to API limitations or lack of documentation. Check [this issue](https://github.com/jaycem-dev/mac-setup/issues/13) for more details.
+Some settings must be changed manually due to API limitation or lack of documentation. Check [this issue](https://github.com/Jaycedam/mac-setup/issues/13) for more details.
 
 ---
 
-## How to use
+## Credit
 
-If you want to use this project with your own dotfiles and configs, just follow these instructions:
-
-**IMPORTANT**: The path _~/Developer/mac-setup_ is expected by the script; it's used to generate symlinks and relative path operations.
-
-1. Fork the project then git clone (Replace **USERNAME** with yours):
-
-```sh
-git clone https://github.com/USERNAME/mac-setup.git ~/Developer/mac-setup
-```
-
-2. Delete my backup:
-
-```sh
-cd ~/Developer/mac-setup && rm -rf dotfiles/*
-```
-
-3. Back up your dotfiles and Brew packages. This moves your dotfiles to the project directory, then creates symlinks to $HOME. It will also back up your Brew packages into a Brewfile:
-
-```sh
-cd ~/Developer/mac-setup && sh backup.sh
-```
-
-_If you install new Brew packages, just run **backup.sh** again to update the Brewfile._
-
-4. Make sure to change the USERNAME from the URL in the [automated setup](#automated-setup) section to yours. Then push the changes to your repo.
-
-## Links
-
-- [GitHub](https://github.com/jaycem-dev/mac-setup)
+- [macOS defaults list](https://macos-defaults.com/)
