@@ -4,12 +4,15 @@ import { getProjectTags } from "@lib/project-collection";
 import Link from "@ui/Link.astro";
 import type { CollectionKey } from "astro:content";
 import TagsIcon from "@assets/icons/tags.svg";
+import { getTranslations, type Locale } from "@lib/translations";
 
 type Props = {
     collection: CollectionKey;
+    lang: Locale;
 };
 
-const { collection } = Astro.props;
+const { collection, lang } = Astro.props;
+const t = getTranslations(lang);
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g)?.pop();
 
@@ -18,9 +21,9 @@ let tags: {
 }[] = [];
 
 if (collection === "projects") {
-    tags = await getProjectTags();
+    tags = await getProjectTags(lang);
 } else if (collection === "blog") {
-    tags = await getPostsTags();
+    tags = await getPostsTags(lang);
 }
 ---
 
@@ -34,8 +37,9 @@ if (collection === "projects") {
                 variant="link"
                 class={`relative ${collection === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                 href={`/${collection}`}
+                lang={lang}
             >
-                All
+                {t.common.all}
                 {
                     collection === subpath && (
                         // If the current path match the name of the tag, then render the link bg
@@ -55,6 +59,7 @@ if (collection === "projects") {
                         variant="link"
                         class={`relative ${tag.tag === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                         href={`/${collection}/tag/${tag.tag}`}
+                        lang={lang}
                     >
                         #{tag.tag}
                         {tag.tag === subpath && (

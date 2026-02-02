@@ -2,17 +2,25 @@
 import type { Project } from "@lib/types";
 import { Image } from "astro:assets";
 import placeholder from "@assets/projects/placeholder.webp";
+import Link from "@ui/Link.astro";
+import type { Locale } from "@lib/translations";
 
 type Props = {
     item: Project;
+    lang: Locale;
 };
 
-const { item } = Astro.props;
+const { item, lang } = Astro.props;
+
+// Clean the ID for URL generation
+const cleanId = item.id.replace("es/", "");
+const href = `/projects/${cleanId}`;
 ---
 
-<a
-    href={`/projects/${item.id}`}
-    class="w-full rounded-3xl border bg-linear-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900"
+<Link
+    href={href}
+    lang={lang}
+    variant="card"
 >
     <!--text-->
     <div class="space-y-4 p-8">
@@ -43,4 +51,4 @@ const { item } = Astro.props;
                     (max-width: 1280px) 1500px`}
     />
     <span class="sr-only">Project details</span>
-</a>
+</Link>

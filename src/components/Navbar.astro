@@ -5,19 +5,30 @@ import HeaderLink from "@components/HeaderLink.astro";
 import Link from "@ui/Link.astro";
 import Logo from "@assets/icons/logo.svg";
 import EmailIcon from "@assets/icons/email.svg";
+import { getTranslations, type Locale } from "@lib/translations";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+export interface Props {
+    lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
+
+const homeUrl = getRelativeLocaleUrl(lang, "/");
 
 const navLinks: Navlinks[] = [
     {
         href: "/",
-        label: "Home",
+        label: t.nav.home,
     },
     {
         href: "/projects",
-        label: "Projects",
+        label: t.nav.projects,
     },
     {
         href: "/blog",
-        label: "Blog",
+        label: t.nav.blog,
     },
 ];
 ---
@@ -29,7 +40,7 @@ const navLinks: Navlinks[] = [
         <nav>
             <ul class="flex items-center gap-4 sm:gap-8">
                 <li>
-                    <a class="px-4 py-2" href="/">
+                    <a class="px-4 py-2" href={homeUrl}>
                         <Logo width={35} height={35} />
                         <p class="sr-only">Logo</p>
                     </a>
@@ -37,7 +48,7 @@ const navLinks: Navlinks[] = [
                 {
                     navLinks.map((link) => (
                         <li>
-                            <HeaderLink href={link.href}>
+                            <HeaderLink href={link.href} lang={lang}>
                                 {link.label}
                             </HeaderLink>
                         </li>

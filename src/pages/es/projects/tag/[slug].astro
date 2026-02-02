@@ -8,8 +8,8 @@ const tag = Astro.props;
 
 export async function getStaticPaths() {
     const data = await getCollection("projects", ({ id }) => {
-        // Filter to only English content (not in es/ subfolder)
-        return !id.startsWith("es/");
+        // Filter to only Spanish content (in es/ subfolder)
+        return id.startsWith("es/");
     });
     const tags = Array.from(
         new Set(data.flatMap((item) => item.data.tags)),
@@ -24,6 +24,6 @@ export async function getStaticPaths() {
 }
 ---
 
-<Layout title={`${slug} Projects | JC Portfolio`} lang="en">
-    <Projects lang="en" homepage={false} title="Projects" filter={tag.tag} />
+<Layout title={`${slug} Proyectos | JC Portfolio`} lang="es">
+    <Projects lang="es" homepage={false} title="Proyectos" filter={tag.tag} />
 </Layout>

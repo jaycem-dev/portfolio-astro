@@ -7,11 +7,11 @@ import Tags from "@components/Tags.astro";
 
 export async function getStaticPaths() {
     const item = await getCollection("blog", ({ id }) => {
-        // Filter to only English content (not in es/ subfolder)
-        return !id.startsWith("es/");
+        // Filter to only Spanish content (in es/ subfolder)
+        return id.startsWith("es/");
     });
     const paths = item.map((item) => ({
-        params: { id: item.id },
+        params: { id: item.id.replace("es/", "") },
         props: item,
     }));
 
@@ -23,7 +23,7 @@ const item = Astro.props;
 const { Content } = await render(item);
 ---
 
-<Layout title={item.data.title + " | JC Portfolio"} lang="en">
+<Layout title={item.data.title + " | JC Portfolio"} lang="es">
     <section class="mx-auto max-w-6xl space-y-16">
         <!--header title-->
         <div class="space-y-8 text-center">
@@ -52,7 +52,7 @@ const { Content } = await render(item);
 
             <!--tags-->
             <div class="grid justify-center">
-                <Tags tags={item.data.tags} type="blog" lang="en" />
+                <Tags tags={item.data.tags} type="blog" lang="es" />
             </div>
         </div>
     </section>

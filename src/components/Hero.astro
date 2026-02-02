@@ -2,16 +2,24 @@
 import Link from "@ui/Link.astro";
 import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 import ArrowRightUpIcon from "@assets/icons/arrow-right-up.svg";
+import { getTranslations, type Locale } from "@lib/translations";
+
+export interface Props {
+    lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <section>
     <div class="mt-16 flex flex-col justify-center gap-8">
         <!--text-->
         <div class="space-y-2">
-            <p class="animate-fade text-2xl font-bold">Jordan C.</p>
+            <p class="animate-fade text-2xl font-bold">{t.hero.name}</p>
             <h1 class="animate-fade-up-500">
-                I enjoy
-                <span class="text-muted-foreground"> simplicity.</span>
+                {t.hero.title}
+                <span class="text-muted-foreground"> {t.hero.subtitle}</span>
             </h1>
         </div>
 
@@ -26,7 +34,7 @@ import ArrowRightUpIcon from "@assets/icons/arrow-right-up.svg";
                     size="lg"
                     href="https://github.com/jaycem-dev"
                 >
-                    <span>GitHub</span>
+                    <span>Github</span>
                     <ArrowRightUpIcon width={20} height={20} />
                 </Link>
 
@@ -35,7 +43,7 @@ import ArrowRightUpIcon from "@assets/icons/arrow-right-up.svg";
                     href={"mailto:" + import.meta.env.EMAIL}
                     size="lg"
                 >
-                    <span>Contact</span>
+                    <span>{t.hero.contact}</span>
                     <ArrowRightIcon
                         class="transition-transform group-hover:translate-x-2"
                         width={20}

@@ -4,14 +4,16 @@ import Footer from "@components/Footer.astro";
 import "@/styles/globals.css";
 import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/inter"; // font
+import type { Locale } from "@lib/translations";
 
 interface Props {
     title: string;
+    lang: Locale;
 }
-const { title } = Astro.props;
+const { title, lang } = Astro.props;
 ---
 
-<html lang="en">
+<html lang={lang}>
     <head>
         <meta charset="UTF-8" />
         <meta name="description" content="Astro description" />
@@ -44,7 +46,7 @@ const { title } = Astro.props;
         </script>
     </head>
     <body class="bg-background text-foreground">
-        <Navbar />
+        <Navbar lang={lang} />
         <ClientRouter fallback="swap" />
 
         <main class="container min-h-[80vh] space-y-28 pt-20 pb-40">

@@ -4,14 +4,25 @@ import FilterByTag from "@components/FilterByTag.astro";
 import Link from "@ui/Link.astro";
 import BlogCard from "@components/BlogCard.astro";
 import ArrowRightIcon from "@assets/icons/arrow-right.svg";
+import { getTranslations, type Locale } from "@lib/translations";
 
-const { homepage, title, filter } = Astro.props;
+export interface Props {
+    lang: Locale;
+    homepage: boolean;
+    title?: string;
+    filter?: string;
+}
 
-type Props = { homepage: boolean; title: string; filter?: string };
+const { lang, homepage, title, filter } = Astro.props;
+const t = getTranslations(lang);
 
-let data = (await getCollection("blog")).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+let data = (
+    await getCollection("blog", ({ id }) => {
+        // Filter by locale based on path
+        const itemLang = id.startsWith("es/") ? "es" : "en";
+        return itemLang === lang;
+    })
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 if (homepage) {
     data = data.slice(0, 2);
@@ -28,15 +39,15 @@ if (filter) {
 ---
 
 <section id="blog" class="space-y-12">
-    {homepage ? <h2>{title}</h2> : <h1 class="text-center">{title}</h1>}
+    {homepage ? <h2>{t.blog.title}</h2> : <h1 class="text-center">{title}</h1>}
 
-    {!homepage && <FilterByTag collection="blog" />}
+    {!homepage && <FilterByTag collection="blog" lang={lang} />}
 
     <ol class="grid gap-16 md:grid-cols-2">
         {
             data.map((item) => (
                 <li>
-                    <BlogCard item={item} />
+                    <BlogCard item={item} lang={lang} />
                 </li>
             ))
         }
@@ -51,8 +62,9 @@ if (filter) {
                     class="group space-x-2"
                     href="/blog"
                     size="lg"
+                    lang={lang}
                 >
-                    <span>See more</span>
+                    <span>{t.blog.seeMore}</span>
                     <ArrowRightIcon
                         class="transition-transform group-hover:translate-x-2"
                         width={18}

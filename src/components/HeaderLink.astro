@@ -1,9 +1,13 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import Link from "./ui/Link.astro";
-type Props = HTMLAttributes<"a">;
+import type { Locale } from "@lib/translations";
 
-const { href, ...props } = Astro.props;
+interface Props extends Omit<HTMLAttributes<"a">, "lang"> {
+    lang?: Locale;
+}
+
+const { href, lang, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
@@ -14,6 +18,7 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
     <Link
         variant="link"
         href={href}
+        lang={lang}
         class={`relative px-0 ${isActive && "text-primary"}`}
         {...props}
     >

@@ -4,17 +4,19 @@ import { filterProjectsByTag, getProjects } from "@lib/project-collection";
 import ProjectCard from "@components/ProjectCard.astro";
 import Link from "@ui/Link.astro";
 import ArrowRightIcon from "@assets/icons/arrow-right.svg";
+import { getTranslations, type Locale } from "@lib/translations";
 
-const { homepage, filter, title } = Astro.props;
-
-type Props = {
+export interface Props {
+    lang: Locale;
     homepage: boolean;
-    title: string;
-    // filter by tag
+    title?: string;
     filter?: string;
-};
+}
 
-let data = await getProjects(homepage);
+const { lang, homepage, filter, title } = Astro.props;
+const t = getTranslations(lang);
+
+let data = await getProjects(homepage, lang);
 
 // if a filter is passed as prop, then filter
 if (filter) {
@@ -23,12 +25,18 @@ if (filter) {
 ---
 
 <section id="projects" class="space-y-12">
-    {homepage ? <h2>{title}</h2> : <h1 class="text-center">{title}</h1>}
+    {
+        homepage ? (
+            <h2>{t.projects.title}</h2>
+        ) : (
+            <h1 class="text-center">{title}</h1>
+        )
+    }
 
-    {!homepage && <FilterByTag collection="projects" />}
+    {!homepage && <FilterByTag collection="projects" lang={lang} />}
 
     <div class="grid gap-8 md:grid-cols-2">
-        {data.map((project) => <ProjectCard item={project} />)}
+        {data.map((project) => <ProjectCard item={project} lang={lang} />)}
     </div>
 
     <!--if this component is rendered on the homepage, then render the link to all projects-->
@@ -40,8 +48,9 @@ if (filter) {
                     class="group space-x-2"
                     href="/projects"
                     size="lg"
+                    lang={lang}
                 >
-                    <span>See more</span>
+                    <span>{t.projects.seeMore}</span>
                     <ArrowRightIcon
                         class="transition-transform group-hover:translate-x-2"
                         width={18}

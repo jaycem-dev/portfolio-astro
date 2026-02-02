@@ -2,12 +2,20 @@
 import type { Blog } from "@lib/types";
 import FormattedDate from "@components/FormattedDate.astro";
 import ArrowRightIcon from "@assets/icons/arrow-right.svg";
+import Link from "@ui/Link.astro";
+import { getTranslations, type Locale } from "@lib/translations";
 
 type Props = {
     item: Blog;
+    lang: Locale;
 };
 
-const { item } = Astro.props;
+const { item, lang } = Astro.props;
+const t = getTranslations(lang);
+
+// Clean the ID for URL generation
+const cleanId = item.id.replace("es/", "");
+const href = `/blog/${cleanId}`;
 ---
 
 <div class="flex flex-col gap-4">
@@ -23,18 +31,22 @@ const { item } = Astro.props;
         }
     </p>
     <h3 transition:name={"blog-title-" + item.id}>
-        <a href={`/blog/${item.id}`}>
+        <Link href={href} lang={lang} variant="link" class="p-0">
             {item.data.title}
-        </a>
+        </Link>
     </h3>
 
     <p transition:name={"blog-desc-" + item.id}>
         {item.data.description}
     </p>
 
-    <a class="group inline-flex items-center gap-2" href={`/blog/${item.id}`}>
-        Read more
-
+    <Link
+        href={href}
+        lang={lang}
+        variant="link"
+        class="group inline-flex items-center gap-2 p-0"
+    >
+        {t.blog.readMore}
         <ArrowRightIcon width={20} height={20} />
-    </a>
+    </Link>
 </div>
