@@ -15,11 +15,15 @@ export const translations = {
         blog: {
             title: "Blog: Latest",
             seeMore: "See more",
+            readMore: "Read more",
         },
         nav: {
             home: "Home",
             projects: "Projects",
             blog: "Blog",
+        },
+        common: {
+            all: "All",
         },
     },
     es: {
@@ -36,11 +40,15 @@ export const translations = {
         blog: {
             title: "Blog: Últimos",
             seeMore: "Ver más",
+            readMore: "Leer más",
         },
         nav: {
             home: "Inicio",
             projects: "Proyectos",
             blog: "Blog",
+        },
+        common: {
+            all: "Todos",
         },
     },
 } as const;
