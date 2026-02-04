@@ -1,7 +1,7 @@
 ---
 import Link from "@ui/Link.astro";
 import TagsIcon from "@assets/icons/tags.svg";
-import type { Locale } from "@lib/translations";
+import { getTranslations, type Locale } from "@lib/translations";
 
 type Props = {
     tags: string[];
@@ -10,6 +10,7 @@ type Props = {
 };
 
 const { tags, type, lang } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <ul class="flex flex-wrap items-center gap-2">
@@ -22,7 +23,7 @@ const { tags, type, lang } = Astro.props;
                 <Link
                     variant="secondary"
                     size="sm"
-                    href={`/${type}/tag/${tag}`}
+                    href={`/${t.routes[type]}/tag/${tag}`}
                     lang={lang}
                 >
                     #{tag}

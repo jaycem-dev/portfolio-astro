@@ -3,7 +3,7 @@ import type { Project } from "@lib/types";
 import { Image } from "astro:assets";
 import placeholder from "@assets/projects/placeholder.webp";
 import Link from "@ui/Link.astro";
-import type { Locale } from "@lib/translations";
+import { getTranslations, type Locale } from "@lib/translations";
 
 type Props = {
     item: Project;
@@ -11,10 +11,11 @@ type Props = {
 };
 
 const { item, lang } = Astro.props;
+const t = getTranslations(lang);
 
 // Clean the ID for URL generation
 const cleanId = item.id.replace("es/", "");
-const href = `/projects/${cleanId}`;
+const href = `/${t.routes.projects}/${cleanId}`;
 ---
 
 <Link

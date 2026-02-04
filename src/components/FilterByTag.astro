@@ -36,7 +36,7 @@ if (collection === "projects") {
             <Link
                 variant="link"
                 class={`relative ${collection === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
-                href={`/${collection}`}
+                href={`/${t.routes[collection]}`}
                 lang={lang}
             >
                 {t.common.all}
@@ -58,7 +58,7 @@ if (collection === "projects") {
                     <Link
                         variant="link"
                         class={`relative ${tag.tag === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
-                        href={`/${collection}/tag/${tag.tag}`}
+                        href={`/${t.routes[collection]}/tag/${tag.tag}`}
                         lang={lang}
                     >
                         #{tag.tag}

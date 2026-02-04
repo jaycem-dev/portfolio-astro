@@ -25,6 +25,10 @@ export const translations = {
         common: {
             all: "All",
         },
+        routes: {
+            projects: "projects",
+            blog: "blog",
+        },
     },
     es: {
         hero: {
@@ -49,6 +53,10 @@ export const translations = {
         },
         common: {
             all: "Todos",
+        },
+        routes: {
+            projects: "proyectos",
+            blog: "blog",
         },
     },
 } as const;

@@ -23,11 +23,11 @@ const navLinks: Navlinks[] = [
         label: t.nav.home,
     },
     {
-        href: "/projects",
+        href: `/${t.routes.projects}`,
         label: t.nav.projects,
     },
     {
-        href: "/blog",
+        href: `/${t.routes.blog}`,
         label: t.nav.blog,
     },
 ];
@@ -66,6 +66,7 @@ const navLinks: Navlinks[] = [
                     size="icon"
                     variant="ghost"
                     href={"mailto:" + import.meta.env.EMAIL}
+                    title=""
                 >
                     <EmailIcon width={20} height={20} />
                 </Link>
