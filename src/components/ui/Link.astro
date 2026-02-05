@@ -5,7 +5,7 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import type { Locale } from "@lib/translations";
 
 export interface Props extends HTMLAttributes<"a"> {
-    variant?: "destructive" | "outline" | "secondary" | "ghost" | "link" | "card";
+    variant?: "destructive" | "outline" | "secondary" | "ghost" | "link" | "card" | "none";
     size?: "sm" | "lg" | "icon";
     lang?: Locale;
 }
@@ -21,8 +21,8 @@ const localizedHref = lang && typeof href === "string" && !href.startsWith("http
 <a
     href={localizedHref}
     class={twMerge(
-        // Base styles - only apply to non-card variants
-        variant !== "card" && "inline-flex items-center justify-center whitespace-nowrap rounded-3xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        // Base styles - only apply to non-card and non-none variants
+        variant !== "card" && variant !== "none" && "inline-flex items-center justify-center whitespace-nowrap rounded-3xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
 
         variant === "default" &&
             "bg-primary text-primary-foreground hover:bg-primary/90",
@@ -36,11 +36,11 @@ const localizedHref = lang && typeof href === "string" && !href.startsWith("http
         variant === "link" && "text-muted-foreground hover:text-primary",
         variant === "card" && "block w-full rounded-3xl border bg-linear-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900",
 
-        // Size styles - only apply to non-card variants
-        variant !== "card" && size === "default" && "h-10 px-4 py-2",
-        variant !== "card" && size === "sm" && "h-9 rounded-3xl px-3",
-        variant !== "card" && size === "lg" && "h-11 rounded-3xl px-8",
-        variant !== "card" && size === "icon" && "h-10 w-10",
+        // Size styles - only apply to non-card and non-none variants
+        variant !== "card" && variant !== "none" && size === "default" && "h-10 px-4 py-2",
+        variant !== "card" && variant !== "none" && size === "sm" && "h-9 rounded-3xl px-3",
+        variant !== "card" && variant !== "none" && size === "lg" && "h-11 rounded-3xl px-8",
+        variant !== "card" && variant !== "none" && size === "icon" && "h-10 w-10",
 
         Astro.props.class,
     )}

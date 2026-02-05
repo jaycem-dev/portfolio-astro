@@ -31,7 +31,7 @@ const href = `/${t.routes.blog}/${cleanId}`;
         }
     </p>
     <h3 transition:name={"blog-title-" + item.id}>
-        <Link href={href} lang={lang} variant="link" class="p-0">
+        <Link href={href} lang={lang} variant="none">
             {item.data.title}
         </Link>
     </h3>
@@ -43,8 +43,8 @@ const href = `/${t.routes.blog}/${cleanId}`;
     <Link
         href={href}
         lang={lang}
-        variant="link"
-        class="group inline-flex items-center gap-2 p-0"
+        variant="none"
+        class="group inline-flex items-center gap-2"
     >
         {t.blog.readMore}
         <ArrowRightIcon width={20} height={20} />
