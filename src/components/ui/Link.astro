@@ -5,8 +5,8 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import type { Locale } from "@lib/translations";
 
 export interface Props extends HTMLAttributes<"a"> {
-    variant?: "destructive" | "outline" | "secondary" | "ghost" | "link" | "card" | "none";
-    size?: "sm" | "lg" | "icon";
+    variant?: "default" | "outline" | "secondary" | "ghost" | "destructive" | "link" | "none";
+    size?: "default" | "xs" | "sm" | "lg" | "icon" | "icon-xs" | "icon-sm" | "icon-lg";
     lang?: Locale;
 }
 
@@ -17,32 +17,38 @@ const localizedHref = lang && typeof href === "string" && !href.startsWith("http
     ? getRelativeLocaleUrl(lang, href)
     : href;
 
-const isStyledVariant = variant !== "card" && variant !== "none";
+const isStyledVariant = variant !== "none";
+const isButtonVariant = isStyledVariant && variant !== "link";
 ---
 
 <a
     href={localizedHref}
     class={cn(
-        // Base styles - only apply to styled variants
-        isStyledVariant && "inline-flex items-center justify-center whitespace-nowrap rounded-3xl text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        // Base styles for button variants
+        isButtonVariant && "focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 rounded-lg border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 aria-invalid:ring-3 [&_svg:not([class*='size-'])]:size-4 inline-flex items-center justify-center whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none shrink-0 [&_svg]:shrink-0 outline-none group/button select-none",
+
+        // Base styles for link variant
+        variant === "link" && "text-primary underline-offset-4 hover:underline",
 
         // Variant styles
         {
-            "bg-primary text-primary-foreground hover:bg-primary/90": variant === "default",
-            "bg-destructive text-destructive-foreground hover:bg-destructive/90": variant === "destructive",
-            "border border-input bg-background hover:bg-accent hover:text-accent-foreground": variant === "outline",
-            "bg-secondary text-secondary-foreground hover:bg-secondary/80": variant === "secondary",
-            "hover:bg-accent hover:text-accent-foreground": variant === "ghost",
-            "text-muted-foreground hover:text-primary": variant === "link",
-            "block w-full rounded-3xl border bg-linear-to-tr from-zinc-50 to-zinc-100 transition-transform duration-500 hover:scale-[102%] dark:from-zinc-950 dark:to-zinc-900": variant === "card",
+            "bg-primary text-primary-foreground [a]:hover:bg-primary/80": variant === "default",
+            "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground": variant === "outline",
+            "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground": variant === "secondary",
+            "hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground": variant === "ghost",
+            "bg-destructive/10 hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/20 text-destructive focus-visible:border-destructive/40 dark:hover:bg-destructive/30": variant === "destructive",
         },
 
-        // Size styles - only apply to styled variants
-        isStyledVariant && {
-            "h-10 px-4 py-2": size === "default",
-            "h-9 rounded-3xl px-3": size === "sm",
-            "h-11 rounded-3xl px-8": size === "lg",
-            "h-10 w-10": size === "icon",
+        // Size styles - only apply to styled button variants
+        isButtonVariant && {
+            "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2": size === "default",
+            "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3": size === "xs",
+            "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5": size === "sm",
+            "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3": size === "lg",
+            "size-8": size === "icon",
+            "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3": size === "icon-xs",
+            "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg": size === "icon-sm",
+            "size-9": size === "icon-lg",
         },
 
         Astro.props.class,
