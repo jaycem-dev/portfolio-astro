@@ -13,7 +13,7 @@ export const translations = {
             seeMore: "See more",
         },
         blog: {
-            title: "Blog: Latest",
+            title: "Blog",
             seeMore: "See more",
             readMore: "Read more",
         },
@@ -42,7 +42,7 @@ export const translations = {
             seeMore: "Ver más",
         },
         blog: {
-            title: "Blog: Últimos",
+            title: "Blog",
             seeMore: "Ver más",
             readMore: "Leer más",
         },
