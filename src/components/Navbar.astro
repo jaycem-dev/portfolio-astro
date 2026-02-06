@@ -1,7 +1,6 @@
 ---
 import type { Navlinks } from "@lib/types";
 import ThemeToggle from "@components/ThemeToggle.astro";
-import HeaderLink from "@components/HeaderLink.astro";
 import Link from "@ui/Link.astro";
 import Logo from "@assets/icons/logo.svg";
 import EmailIcon from "@assets/icons/email.svg";
@@ -48,9 +47,9 @@ const navLinks: Navlinks[] = [
                 {
                     navLinks.map((link) => (
                         <li>
-                            <HeaderLink href={link.href} lang={lang}>
+                            <Link href={link.href} variant="link" lang={lang}>
                                 {link.label}
-                            </HeaderLink>
+                            </Link>
                         </li>
                     ))
                 }
