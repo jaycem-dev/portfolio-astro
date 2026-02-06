@@ -34,7 +34,7 @@ if (collection === "projects") {
         </li>
         <li>
             <Link
-                variant="link"
+                variant="ghost"
                 class={`relative ${collection === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                 href={`/${t.routes[collection]}`}
                 lang={lang}
@@ -44,7 +44,7 @@ if (collection === "projects") {
                     collection === subpath && (
                         // If the current path match the name of the tag, then render the link bg
                         <div
-                            class="bg-primary absolute inset-0 -z-10 rounded-3xl"
+                            class="bg-primary absolute inset-0 -z-10 rounded-lg"
                             transition:name="filter-btn"
                         />
                     )
@@ -56,7 +56,7 @@ if (collection === "projects") {
             tags.map((tag) => (
                 <li>
                     <Link
-                        variant="link"
+                        variant="ghost"
                         class={`relative ${tag.tag === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                         href={`/${t.routes[collection]}/tag/${tag.tag}`}
                         lang={lang}
@@ -65,7 +65,7 @@ if (collection === "projects") {
                         {tag.tag === subpath && (
                             // If the current path match the name of the tag, then render the link bg
                             <div
-                                class="bg-primary absolute inset-0 -z-10 rounded-3xl"
+                                class="bg-primary absolute inset-0 -z-10 rounded-lg"
                                 transition:name="filter-btn"
                             />
                         )}
