@@ -12,7 +12,8 @@ const { href, lang, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname ||
+const isActive =
+    href === pathname ||
     href === "/" + subpath?.[0] ||
     (lang !== "en" && pathname.includes(href));
 ---
@@ -22,7 +23,7 @@ const isActive = href === pathname ||
         variant="link"
         href={href}
         lang={lang}
-        class={`relative px-0 ${isActive && "text-primary"}`}
+        class={`${isActive && "underline-offset-4 underline"}`}
         {...props}
     >
         <slot />
