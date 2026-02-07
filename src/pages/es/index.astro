@@ -3,9 +3,15 @@ import Projects from "@components/Projects.astro";
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/Hero.astro";
 import BlogPosts from "@components/BlogPosts.astro";
+import LanguageSuggestion from "@components/LanguageSuggestion.astro";
 ---
 
-<Layout title="jaycem" lang="es">
+<Layout title="Jaycem" lang="es">
+    <LanguageSuggestion 
+        currentLang="es" 
+        targetLang="en" 
+        targetUrl="/" 
+    />
     <Hero lang="es" />
     <Projects lang="es" homepage />
     <BlogPosts lang="es" homepage />
