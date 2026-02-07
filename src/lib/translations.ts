@@ -3,7 +3,7 @@ export type Locale = "en" | "es";
 export const translations = {
     en: {
         hero: {
-            name: "Jordan C.",
+            name: "Hi, I'm Jordan.",
             title: "I enjoy",
             subtitle: "simplicity.",
             contact: "Contact",
@@ -32,7 +32,7 @@ export const translations = {
     },
     es: {
         hero: {
-            name: "Jordan C.",
+            name: "Hola, soy Jordan.",
             title: "Disfruto la",
             subtitle: "simplicidad.",
             contact: "Contacto",
