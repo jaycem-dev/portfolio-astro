@@ -23,7 +23,7 @@ export const translations = {
             blog: "Blog",
         },
         common: {
-            all: "All",
+            clear: "Clear filter",
         },
         routes: {
             projects: "projects",
@@ -52,7 +52,7 @@ export const translations = {
             blog: "Blog",
         },
         common: {
-            all: "Todos",
+            clear: "Limpiar filtro",
         },
         routes: {
             projects: "proyectos",
