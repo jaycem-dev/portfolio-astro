@@ -8,6 +8,10 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
     site: "https://www.jaycem.dev",
     adapter: vercel(),
+    i18n: {
+        locales: ["es", "en"],
+        defaultLocale: "en",
+    },
     markdown: {
         shikiConfig: {
             theme: "catppuccin-mocha",

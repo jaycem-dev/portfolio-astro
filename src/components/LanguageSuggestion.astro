@@ -1,0 +1,51 @@
+---
+export interface Props {
+    currentLang: "en" | "es";
+    targetLang: "en" | "es";
+    targetUrl: string;
+}
+
+const { currentLang, targetLang, targetUrl } = Astro.props;
+
+// Label in target language, button in target language too
+const texts: Record<string, { label: string; button: string }> = {
+    en: { label: "This page is available in English", button: "Switch" },
+    es: { label: "Esta página está disponible en español", button: "Cambiar" },
+};
+
+const text = texts[targetLang];
+---
+
+<div
+    id="lang-suggestion"
+    class="animate-fade bg-muted/50 mb-6 hidden rounded-lg border px-4 py-3 text-sm"
+    data-current={currentLang}
+>
+    <div class="flex items-center justify-between gap-4">
+        <span class="text-muted-foreground">{text.label}</span>
+        <a
+            href={targetUrl}
+            class="text-primary font-medium underline-offset-4 hover:underline"
+        >
+            {text.button}
+        </a>
+    </div>
+</div>
+
+<script is:inline type="module">
+    const suggestion = document.getElementById("lang-suggestion");
+    if (suggestion) {
+        const currentLang = suggestion.dataset.current;
+        const browserLang = navigator.language.toLowerCase();
+
+        // Show suggestion if browser lang doesn't match current page
+        const shouldShow =
+            currentLang === "en"
+                ? browserLang.startsWith("es")
+                : browserLang.startsWith("en");
+
+        if (shouldShow) {
+            suggestion.classList.remove("hidden");
+        }
+    }
+</script>
