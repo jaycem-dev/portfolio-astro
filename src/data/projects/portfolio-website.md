@@ -1,7 +1,7 @@
 ---
-title: "Personal Website"
+title: "Portfolio Website"
 category: "Website"
-description: "My personal website where I showcase some of my projects and blog"
+description: "My portfolio website where I showcase some of my projects and blog"
 date: "2024-03"
 featured: true
 tags: ["astro", "tailwindcss"]
