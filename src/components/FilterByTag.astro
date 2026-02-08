@@ -59,7 +59,7 @@ if (collection === "projects") {
                         class={`relative ${tag.tag === subpath && "text-primary-foreground hover:text-primary-foreground"} `}
                         href={`/${t.routes[collection]}/tag/${tag.tag}`}
                         lang={lang}
-                        transition:name={"tag" + tag.tag}
+                        transition:name={collection + tag.tag}
                     >
                         #{tag.tag}
                         {tag.tag === subpath && (
