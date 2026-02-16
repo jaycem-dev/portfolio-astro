@@ -1,3 +1,5 @@
+export const prerender = false;
+
 export const GET = async () => {
     const res = await fetch(
         "https://raw.githubusercontent.com/jaycem-dev/nix/master/install.sh",
